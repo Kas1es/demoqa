@@ -3,6 +3,7 @@ import io.qameta.allure.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -19,8 +20,7 @@ public class firstTest {
     @BeforeTest
     public void before() {
         System.setProperty("WebDriver", "C:\\\\Users\\\\Egor\\\\IdeaProjects\\\\Progect\\\\driver\\\\IEDriverServer.exe");
-        WebDriverManager.edgedriver().setup();
-        driver = new EdgeDriver();
+    driver = new FirefoxDriver();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         locators = new Locators(driver);
     }
