@@ -7,7 +7,9 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions
 import java.io.File;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -32,8 +34,10 @@ public class firstTest {
         File fileF = new File(resourceUrl.toURI());
         String filePath = fileF.getAbsolutePath();
         System.setProperty("WebDriver", filePath);
-
-        driver = new EdgeDriver();
+WebDriverManager.chromedriver().setup();
+ChromeOptions options = new ChromeOptions();
+options.addArguments("--headless", "--disable-gpu");
+WebDriver driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         locators = new Locators(driver);
     }
