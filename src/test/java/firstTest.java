@@ -36,7 +36,11 @@ public class firstTest {
         System.setProperty("WebDriver", filePath);
 WebDriverManager.chromedriver().setup();
 ChromeOptions options = new ChromeOptions();
-options.addArguments("--headless", "--disable-gpu");
+options.addArguments(  "--headless",
+    "--disable-gpu",
+    "--no-sandbox",
+    "--remote-allow-origins=*",
+    "--disable-dev-shm-usage");
 WebDriver driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         locators = new Locators(driver);
