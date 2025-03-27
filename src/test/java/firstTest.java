@@ -73,7 +73,7 @@ public class firstTest {
         // locators.clickSelectState();
         // locators.clickCity();
         // locators.clickSubmit();
-        if (2>3) System.out.print("qwe")
+        if (2>3) System.out.print("qwe");
     }
 
 
