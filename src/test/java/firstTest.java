@@ -2,6 +2,7 @@ import com.github.javafaker.Faker;
 import io.qameta.allure.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
