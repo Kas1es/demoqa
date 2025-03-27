@@ -18,6 +18,7 @@ public class firstTest {
     @BeforeTest
     public void before() {
         System.setProperty("WebDriver", "C:\\\\Users\\\\Egor\\\\IdeaProjects\\\\Progect\\\\driver\\\\IEDriverServer.exe");
+        WebDriverManager.edgedriver().setup();
         driver = new EdgeDriver();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         locators = new Locators(driver);
