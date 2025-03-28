@@ -35,61 +35,65 @@ public class Locators {
 
     //Методы
 
+    @Step("Заполнение фамилии")
     public void imputFirstName(String firstNameV) {
         driver.findElement(firstName).sendKeys(firstNameV);
     }
-
+    @Step("Заполнение имени")
     public void imputLastName(String lastNameV) {
         driver.findElement(lastName).sendKeys(lastNameV);
     }
-
+    @Step("Заполнение email")
     public void imputUserEmail(String userEmailV) {
         driver.findElement(userEmail).sendKeys(userEmailV);
     }
-
+    @Step("Выбор пола")
     public void clickCheckBoxMale() {
         Duration duration = Duration.ofSeconds(10); //Pflf
         WebDriverWait wait = new WebDriverWait(driver, duration);
         wait.until(ExpectedConditions.elementToBeClickable(checkBoxMale));
         driver.findElement(checkBoxMale).click();
     }
-
+    @Step("Заполение номера")
     public void imputUserNumber() {
         driver.findElement(userNumber).sendKeys("9605270537");
     }
-
+    @Step("Нажать на дату рождения")
     public void clickDateOfBirthInput() {
         driver.findElement(dateOfBirthInput).click();
     }
-
+    @Step("Нажать на список месяцев")
     public void clickSelectMounth() {
         driver.findElement(selectMounth).click();
     }
-
+    @Step("Выбор месяца")
     public void clickMounth() {
         driver.findElement(mounth).click();
     }
-
+    @Step("Нажать на список годов")
     public void clickSelectYear() {
         driver.findElement(selectYear).click();
     }
-
+    @Step("Выбор года")
     public void clickYear() {
         driver.findElement(year).click();
     }
+    @Step("Выбор дня")
     public void clickDay() {
         driver.findElement(day).click();
     }
+    @Step("Заполнить предмет")
     public void imputSubject() {
         driver.findElement(subject).sendKeys("Предмет");
     }
+    @Step("Выбор хобби")
     public void clickHobbies() {
         WebElement element = driver.findElement(hobbies);
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
         element.click();
 
     }
-
+    @Step("Загрузка файла")
     public void inputFile() throws URISyntaxException {
         ClassLoader classLoader = Locators.class.getClassLoader();
         URL resourceUrl = classLoader.getResource("JAVA.docx");
@@ -98,12 +102,15 @@ public class Locators {
         System.out.println(filePath);
         driver.findElement(file).sendKeys(filePath);
     }
+    @Step("Выбор штата")
     public void clickSelectState() {
         driver.findElement(selectState).sendKeys("NCR", Keys.ENTER);
     }
+    @Step("Выбор города")
     public void clickCity() {
         driver.findElement(city).sendKeys("del", Keys.ENTER);
     }
+    @Step("Нажать на кнопку submit")
     public void clickSubmit() {
         driver.findElement(submit).click();
     }
