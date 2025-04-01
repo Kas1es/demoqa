@@ -1,11 +1,29 @@
 import org.openqa.selenium.*;
+
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.file.StandardCopyOption;
 import java.time.Duration;
 import io.qameta.allure.*;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
+import org.openqa.selenium.WebElement;
 
 public class Locators {
     WebDriver driver;
@@ -95,12 +113,28 @@ public class Locators {
     }
     @Step("Загрузка файла")
     public void inputFile() throws URISyntaxException {
-        ClassLoader classLoader = Locators.class.getClassLoader();
-        URL resourceUrl = classLoader.getResource("JAVA.docx");
-        File fileF = new File(resourceUrl.toURI());
-        String filePath = fileF.getAbsolutePath();
-        System.out.println(filePath);
-        driver.findElement(file).sendKeys(filePath);
+//        ClassLoader classLoader = Locators.class.getClassLoader();
+//        URL resourceUrl = classLoader.getResource("JAVA.docx");
+//        File fileF = new File(resourceUrl.toURI());
+//        String filePath = fileF.getAbsolutePath();
+//        System.out.println(filePath);
+//        driver.findElement(file).sendKeys(filePath);
+        try {
+            // Определяем место для сохранения файла (например, в папке target)
+            File targetDir = new File("target/test-files");
+            targetDir.mkdirs();
+            File outputFile = new File(targetDir, "JAVA.docx");
+
+            // Копируем файл из ресурсов
+            try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream("JAVA.docx")) {
+                Files.copy(inputStream, outputFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+            }
+
+            // Загружаем файл
+            driver.findElement(file).sendKeys(outputFile.getAbsolutePath());
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to load file from resources", e);
+        }
     }
     @Step("Выбор штата")
     public void clickSelectState() {
@@ -113,5 +147,12 @@ public class Locators {
     @Step("Нажать на кнопку submit")
     public void clickSubmit() {
         driver.findElement(submit).click();
+    }
+
+    public static void takeScreenshot(WebDriver driver, String name) {
+        if (driver instanceof TakesScreenshot) {
+            byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+            Allure.addAttachment(name, new ByteArrayInputStream(screenshot));
+        }
     }
 }

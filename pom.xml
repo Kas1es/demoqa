@@ -65,7 +65,6 @@
             <artifactId>selenium-java</artifactId>
             <version>4.12.0</version> <!-- Актуальная версия -->
         </dependency>
-
         <!-- TestNG -->
         <dependency>
             <groupId>org.testng</groupId>
