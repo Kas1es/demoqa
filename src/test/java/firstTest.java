@@ -61,7 +61,7 @@ public class firstTest {
         locators.clickDay();
         locators.imputSubject();
         locators.clickHobbies();
-        locators.inputFile();
+        //locators.inputFile();
         locators.clickSelectState();
         locators.clickCity();
         locators.clickSubmit();
