@@ -119,6 +119,8 @@ public class Locators {
 //        String filePath = fileF.getAbsolutePath();
 //        System.out.println(filePath);
 //        driver.findElement(file).sendKeys(filePath);
+
+
         try {
             // Определяем место для сохранения файла (например, в папке target)
             File targetDir = new File("target/test-files");

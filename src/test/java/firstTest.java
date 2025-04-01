@@ -5,6 +5,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import java.net.URISyntaxException;
@@ -20,9 +21,9 @@ public class firstTest {
     Locators locators;
     RandomUtils randomUtils;
 
-    @BeforeTest
+    @BeforeMethod
     public void before() throws Exception {
-        // Настройка capabilities для браузера
+     //    Настройка capabilities для браузера
         ChromeOptions options = new ChromeOptions();
         options.setBrowserVersion("127.0"); // или конкретная версия
         Map<String, Object> selenoidOptions = new HashMap<>();
@@ -33,17 +34,18 @@ public class firstTest {
 
         String selenoidUrl = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
         driver = new  RemoteWebDriver(new URL(selenoidUrl), options);
-
-        driver.get("https://demoqa.com/automation-practice-form");
+        String url = System.getProperty("url","https://demoqa.com/automation-practice-form");
+        driver.get(url);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         locators = new Locators(driver);
     }
 
-    @Test(priority = 0, description = "Тестовый тест тестович")
+
+    @Test(priority = 0, description = "Тестовый тест тестович", groups = "TestTag")
     @Description("Тестовое описание")
     @Owner("Ананов Егор")
     @Severity(SeverityLevel.BLOCKER)
-    public void firstTest() throws URISyntaxException {
+    public void firstTest()  throws Exception {
         Faker faker = new Faker(new Locale("en"));
         String firstName = faker.name().firstName(); // Emory
         String lastName = faker.name().lastName(); // Barton
