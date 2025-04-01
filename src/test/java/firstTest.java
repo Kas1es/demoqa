@@ -34,7 +34,7 @@ public class firstTest {
 
         String selenoidUrl = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
         driver = new  RemoteWebDriver(new URL(selenoidUrl), options);
-        String url = System.getProperty("url","https://demoqa.com/automation-practice");
+        String url = System.getProperty("url");
         driver.get(url);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         locators = new Locators(driver);
